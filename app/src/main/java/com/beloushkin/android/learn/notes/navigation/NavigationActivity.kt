@@ -1,14 +1,15 @@
-package com.beloushkin.android.learn.notes
+package com.beloushkin.android.learn.notes.navigation
 
 import android.os.Bundle
-import android.widget.Toast
+import android.view.MenuItem
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
+import com.beloushkin.android.learn.notes.R
 import kotlinx.android.synthetic.main.activity_navigation.*
 
 class NavigationActivity : AppCompatActivity() {
 
-    private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
+    private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item: MenuItem ->
         when (item.itemId) {
             R.id.navigation_tasks -> {
                 messageTextView!!.setText(R.string.title_task)

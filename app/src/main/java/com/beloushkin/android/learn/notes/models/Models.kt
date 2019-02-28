@@ -1,4 +1,4 @@
-package com.beloushkin.android.learn.notes
+package com.beloushkin.android.learn.notes.models
 
 data class Task @JvmOverloads constructor(
     var title: String,
