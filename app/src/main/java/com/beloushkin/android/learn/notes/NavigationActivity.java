@@ -1,6 +1,7 @@
 package com.beloushkin.android.learn.notes;
 
 import android.os.Bundle;
+import android.widget.Toast;
 import androidx.annotation.NonNull;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.appcompat.app.AppCompatActivity;
@@ -36,6 +37,14 @@ public class NavigationActivity extends AppCompatActivity {
         mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+        Tag tag = new Tag("High priority", R.color.colorAccent);
+
+        Task task = new Task("Get groceries");
+
+        String s = task.getTitle();
+
+        Toast.makeText(this, s, Toast.LENGTH_LONG).show();
     }
 
 }
