@@ -6,16 +6,12 @@
                                                    xmlns:app="http://schemas.android.com/apk/res-auto"
                                                    tools:context=".notes.NotesListFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/title_note"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_height="match_parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-
-    />
-
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:id="@+id/recyclerView"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
