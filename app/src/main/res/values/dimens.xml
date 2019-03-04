@@ -5,4 +5,12 @@
 
     <dimen name="simple_item_view_height">128dp</dimen>
     <dimen name="item_margin_default">16dp</dimen>
+    <dimen name="item_margin_small">8dp</dimen>
+
+    <dimen name="text_size_xl_large">32sp</dimen>
+    <dimen name="text_size_large">24sp</dimen>
+    <dimen name="text_size_medium">16sp</dimen>
+    <dimen name="text_size_small">12sp</dimen>
+
+    <dimen name="elevation_default">2</dimen>
 </resources>
