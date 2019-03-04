@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 import com.beloushkin.android.learn.notes.R
 import com.beloushkin.android.learn.notes.models.Task
@@ -19,7 +20,7 @@ class TasksListFragment : Fragment() {
     lateinit var touchActionDelegate: TouchActionDelegate
 
     interface TouchActionDelegate {
-        fun onAddButtonClick()
+        fun onAddButtonClicked(value: String)
     }
 
     override fun onAttach(context: Context?) {
@@ -47,7 +48,7 @@ class TasksListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        recyclerView.layoutManager = LinearLayoutManager(context)
+        recyclerView.layoutManager = LinearLayoutManager(context) as RecyclerView.LayoutManager?
         val adapter = TaskAdapter(mutableListOf(
             Task("Testing one", mutableListOf(
                 Todo("Todo test one", true),

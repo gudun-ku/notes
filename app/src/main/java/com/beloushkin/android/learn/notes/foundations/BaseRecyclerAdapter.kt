@@ -2,6 +2,7 @@ package com.beloushkin.android.learn.notes.foundations
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
+import com.beloushkin.android.learn.notes.tasks.TasksListFragment
 
 abstract class BaseRecyclerAdapter<T>(
     protected val masterList: MutableList<T> = mutableListOf()
