@@ -1,5 +1,6 @@
 package com.beloushkin.android.learn.notes.tasks
 
+import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,6 +26,17 @@ class TaskAdapter(
                 val todoView = LayoutInflater.from(view.context).inflate(R.layout.view_todo,view.todoContainer,false).apply {
                     descriptionView.text = todo.description
                     completeCheckBox.isChecked = todo.isComplete
+                    if (todo.isComplete) {
+                        descriptionView.paintFlags = descriptionView.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+                    }
+
+                    completeCheckBox.setOnCheckedChangeListener { button, isChecked ->
+                        if (isChecked) {
+                            descriptionView.paintFlags = descriptionView.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+                        } else {
+                            descriptionView.paintFlags = descriptionView.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
+                        }
+                    }
                 }
                 view.todoContainer.addView(todoView)
             }
