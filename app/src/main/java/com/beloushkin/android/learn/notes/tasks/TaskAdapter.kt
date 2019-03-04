@@ -1,6 +1,5 @@
 package com.beloushkin.android.learn.notes.tasks
 
-import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,8 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.beloushkin.android.learn.notes.R
 import com.beloushkin.android.learn.notes.foundations.BaseRecyclerAdapter
 import com.beloushkin.android.learn.notes.models.Task
+import com.beloushkin.android.learn.notes.views.TodoView
 import kotlinx.android.synthetic.main.item_task.view.*
-import kotlinx.android.synthetic.main.view_todo.view.*
 
 class TaskAdapter(
     taskList: MutableList<Task> = mutableListOf()
@@ -23,20 +22,8 @@ class TaskAdapter(
             view.titleView.text = data.title
 
             data.todos?.forEach { todo ->
-                val todoView = LayoutInflater.from(view.context).inflate(R.layout.view_todo,view.todoContainer,false).apply {
-                    descriptionView.text = todo.description
-                    completeCheckBox.isChecked = todo.isComplete
-                    if (todo.isComplete) {
-                        descriptionView.paintFlags = descriptionView.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
-                    }
-
-                    completeCheckBox.setOnCheckedChangeListener { button, isChecked ->
-                        if (isChecked) {
-                            descriptionView.paintFlags = descriptionView.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
-                        } else {
-                            descriptionView.paintFlags = descriptionView.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
-                        }
-                    }
+                val todoView = (LayoutInflater.from(view.context).inflate(R.layout.view_todo,view.todoContainer,false) as TodoView).apply {
+                    initView(todo)
                 }
                 view.todoContainer.addView(todoView)
             }
