@@ -8,7 +8,6 @@ import com.beloushkin.android.learn.notes.R
 import com.beloushkin.android.learn.notes.foundations.BaseRecyclerAdapter
 import com.beloushkin.android.learn.notes.models.Note
 import com.beloushkin.android.learn.notes.views.NoteView
-import kotlinx.android.synthetic.main.item_note.view.*
 
 class NoteAdapter(
     notesList: MutableList<Note> = mutableListOf()
