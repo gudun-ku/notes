@@ -1,6 +1,7 @@
 package com.beloushkin.android.learn.notes.tasks
 
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -14,6 +15,22 @@ import com.beloushkin.android.learn.notes.models.Todo
 import kotlinx.android.synthetic.main.fragment_tasks_list.*
 
 class TasksListFragment : Fragment() {
+
+    lateinit var touchActionDelegate: TouchActionDelegate
+
+    interface TouchActionDelegate {
+        fun onAddButtonClick()
+    }
+
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+
+        context?.let{
+            if (it is TouchActionDelegate) {
+                touchActionDelegate = it
+            }
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,7 +59,7 @@ class TasksListFragment : Fragment() {
                 Todo("Todo test four"),
                 Todo("Todo test five")
             ))
-        ))
+        ),touchActionDelegate)
         recyclerView.adapter = adapter
 
     }
@@ -50,4 +67,5 @@ class TasksListFragment : Fragment() {
     companion object {
         fun newInstance() = TasksListFragment()
     }
+
 }

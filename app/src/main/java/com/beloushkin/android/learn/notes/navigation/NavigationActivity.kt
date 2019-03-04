@@ -1,16 +1,18 @@
 package com.beloushkin.android.learn.notes.navigation
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.beloushkin.android.learn.notes.R
+import com.beloushkin.android.learn.notes.create.CreateActivity
 import com.beloushkin.android.learn.notes.notes.NotesListFragment
 import com.beloushkin.android.learn.notes.tasks.TasksListFragment
 import kotlinx.android.synthetic.main.activity_navigation.*
 
-class NavigationActivity : AppCompatActivity() {
+class NavigationActivity : AppCompatActivity(), TasksListFragment.TouchActionDelegate {
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item: MenuItem ->
         when (item.itemId) {
@@ -34,9 +36,17 @@ class NavigationActivity : AppCompatActivity() {
         navigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
     }
 
+    private fun goToCreateActivity() {
+        startActivity(Intent(this, CreateActivity::class.java))
+    }
+
     private fun replaceFragment(fragment: Fragment){
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragmentHolder, fragment)
             .commit()
+    }
+
+    override fun onAddButtonClick() {
+       goToCreateActivity()
     }
 }
