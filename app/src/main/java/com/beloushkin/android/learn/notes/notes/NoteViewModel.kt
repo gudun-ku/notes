@@ -7,15 +7,12 @@ import com.beloushkin.android.learn.notes.models.Note
 
 class NoteViewModel: ViewModel(), NoteListViewContract {
 
+    private val model: NoteModel = NoteModel()
+
     private val _noteListLiveData: MutableLiveData<MutableList<Note>> = MutableLiveData()
     val noteListLiveData: LiveData<MutableList<Note>> = _noteListLiveData
 
     init {
-        _noteListLiveData.postValue(getFakeData())
+        _noteListLiveData.postValue(model.getFakeData())
     }
-    fun getFakeData(): MutableList<Note> = mutableListOf(
-        Note("Note description one"),
-        Note("Note description two"),
-        Note("Note description three"),
-        Note("Note description four"))
 }

@@ -1,7 +1,7 @@
 package com.beloushkin.android.learn.notes.create
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.beloushkin.android.learn.notes.R
 import com.beloushkin.android.learn.notes.navigation.NavigationActivity
 import kotlinx.android.synthetic.main.activity_create.*
