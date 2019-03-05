@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,6 +18,7 @@ class TasksListFragment : Fragment() {
 
     lateinit var viewModel: TaskViewModel
     lateinit var touchActionDelegate: TouchActionDelegate
+    lateinit var adapter: TaskAdapter
 
     interface TouchActionDelegate {
         fun onAddButtonClicked(value: String)
@@ -42,16 +44,19 @@ class TasksListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        bindViewModel()
-
         recyclerView.layoutManager = LinearLayoutManager(context) as RecyclerView.LayoutManager?
-        val adapter = TaskAdapter(viewModel.getFakeData() ,touchActionDelegate)
+        adapter = TaskAdapter(
+            touchActionDelegate = touchActionDelegate
+        )
         recyclerView.adapter = adapter
+        bindViewModel()
     }
 
     private fun bindViewModel(){
         viewModel = ViewModelProviders.of(this).get(TaskViewModel::class.java)
+        viewModel.taskListLiveData.observe(this, Observer {taskList ->
+            adapter.updateList(taskList)
+        })
     }
 
     companion object {
