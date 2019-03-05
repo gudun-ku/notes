@@ -7,16 +7,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-
 import com.beloushkin.android.learn.notes.R
-import com.beloushkin.android.learn.notes.models.Note
 import kotlinx.android.synthetic.main.fragment_tasks_list.*
 
 
 class NotesListFragment : Fragment() {
 
     lateinit var touchActionDelegate: TouchActionDelegate
+    lateinit var viewModel: NoteViewModel
 
     interface TouchActionDelegate {
         fun onAddButtonClicked(value: String)
@@ -32,10 +32,6 @@ class NotesListFragment : Fragment() {
         }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -47,15 +43,15 @@ class NotesListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        recyclerView.layoutManager = LinearLayoutManager(context)
-        val adapter = NoteAdapter(mutableListOf(
-            Note("Note description one"),
-            Note("Note description two"),
-            Note("Note description three"),
-            Note("Note description four")
+        bindViewModel()
 
-        ),touchActionDelegate)
+        recyclerView.layoutManager = LinearLayoutManager(context)
+        val adapter = NoteAdapter(viewModel.getFakeData(),touchActionDelegate)
         recyclerView.adapter = adapter
+    }
+
+    private fun bindViewModel(){
+        viewModel = ViewModelProviders.of(this).get(NoteViewModel::class.java)
     }
 
     companion object {
