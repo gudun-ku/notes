@@ -10,27 +10,32 @@ class NoteLocalModel @Inject constructor() : INoteModel{
 
     private var databaseClient = RoomDatabaseClient.getInstance(NoteApplication.instance.applicationContext)
 
-    override fun getFakeData(): MutableList<Note> = mutableListOf(
-        Note("Note description one"),
-        Note("Note description two"),
-        Note("Note description three"),
-        Note("Note description four")
-    )
+    override fun getFakeData(): MutableList<Note> = retrieveNotes().toMutableList()
+
+//        = mutableListOf(
+//        Note(description = "Note description one"),
+//        Note(description = "Note description two"),
+//        Note(description = "Note description three"),
+//        Note(description = "Note description four")
+//    )
 
     override fun addNote(note: Note, callback: successCallback) {
-        Log.d("Udemy Kotlin course", note.toString())
+        Log.d("Notes. Add", note.toString())
+        databaseClient.noteDAO().addNote(note);
         callback.invoke(true)
     }
 
     override fun updateNote(note: Note, callback: successCallback) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        Log.d("Notes. Update", note.toString())
+        databaseClient.noteDAO().updateNote(note);
+        callback.invoke(true)
     }
 
     override fun deleteNote(note: Note, callback: successCallback) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        Log.d("Notes. Delete", note.toString())
+        databaseClient.noteDAO().deleteNote(note);
+        callback.invoke(true)
     }
 
-    override fun retrieveNotes(): List<Note> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun retrieveNotes(): List<Note> = databaseClient.noteDAO().retrieveNotes()
 }
