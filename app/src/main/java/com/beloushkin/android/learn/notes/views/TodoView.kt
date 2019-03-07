@@ -31,23 +31,10 @@ class TodoView @JvmOverloads constructor(
            todo.isComplete = isChecked
            callback?.invoke(isChecked)
            if (isChecked) {
-               createStrikeThrough()
+               descriptionView.setStrikeThrough()
            } else {
-               removeStrikeThrough()
+               descriptionView.removeStrikeThrough()
            }
        }
-
-    }
-
-    private fun createStrikeThrough() {
-        descriptionView.apply {
-            paintFlags = paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
-        }
-    }
-
-    private fun removeStrikeThrough() {
-        descriptionView.apply {
-            paintFlags = paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
-        }
     }
 }
