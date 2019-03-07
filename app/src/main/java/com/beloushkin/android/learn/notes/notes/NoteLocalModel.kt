@@ -1,11 +1,14 @@
 package com.beloushkin.android.learn.notes.notes
 
 import android.util.Log
+import com.beloushkin.android.learn.notes.application.NoteApplication
+import com.beloushkin.android.learn.notes.database.RoomDatabaseClient
 import com.beloushkin.android.learn.notes.models.Note
 import javax.inject.Inject
 
 class NoteLocalModel @Inject constructor() : INoteModel{
 
+    private var databaseClient = RoomDatabaseClient.getInstance(NoteApplication.instance.applicationContext)
 
     override fun getFakeData(): MutableList<Note> = mutableListOf(
         Note("Note description one"),

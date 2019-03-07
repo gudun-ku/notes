@@ -1,11 +1,15 @@
 package com.beloushkin.android.learn.notes.tasks
 
 import android.util.Log
+import com.beloushkin.android.learn.notes.application.NoteApplication
+import com.beloushkin.android.learn.notes.database.RoomDatabaseClient
 import com.beloushkin.android.learn.notes.models.Task
 import com.beloushkin.android.learn.notes.models.Todo
 import javax.inject.Inject
 
 class TaskLocalModel @Inject constructor() : ITaskModel{
+
+    private var databaseClient = RoomDatabaseClient.getInstance(NoteApplication.instance.applicationContext)
 
     override fun getFakeData(): MutableList<Task> = mutableListOf(
         Task("Testing one", mutableListOf(
