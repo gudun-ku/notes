@@ -1,5 +1,6 @@
 package com.beloushkin.android.learn.notes.notes
 
+import android.util.Log
 import com.beloushkin.android.learn.notes.models.Note
 import javax.inject.Inject
 
@@ -14,7 +15,8 @@ class NoteLocalModel @Inject constructor() : INoteModel{
     )
 
     override fun addNote(note: Note, callback: successCallback) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        Log.d("Udemy Kotlin course", note.toString())
+        callback.invoke(true)
     }
 
     override fun updateNote(note: Note, callback: successCallback) {

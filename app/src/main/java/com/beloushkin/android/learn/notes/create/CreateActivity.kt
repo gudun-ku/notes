@@ -38,7 +38,28 @@ class CreateActivity : AppCompatActivity(),CreateNoteFragment.OnFragmentInteract
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when(item?.itemId) {
-            R.id.saveItem -> Toast.makeText(this, "Save clicked~!", Toast.LENGTH_SHORT).show()
+            R.id.saveItem -> {
+
+                supportFragmentManager.findFragmentById(R.id.fragmentHolder).run {
+                    if (this is CreateTaskFragment) {
+                        this.saveTask { success ->
+                            if (success) {
+                                this@CreateActivity.supportFinishAfterTransition()
+                            } else {
+                                Toast.makeText(this@CreateActivity,getString(R.string.toast_error_string), Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                    } else if (this is CreateNoteFragment) {
+                        this.saveNote { success ->
+                            if (success) {
+                                this@CreateActivity.supportFinishAfterTransition()
+                            } else {
+                                Toast.makeText(this@CreateActivity,getString(R.string.toast_error_string), Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                    }
+                }
+            }
         }
         return super.onOptionsItemSelected(item)
     }

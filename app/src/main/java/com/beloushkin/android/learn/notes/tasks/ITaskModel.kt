@@ -7,10 +7,10 @@ typealias successCallback = (Boolean) -> Unit
 interface ITaskModel {
 
     // CRUD OPERATIONS
-    fun addNote(task: Task, callback: successCallback)
-    fun updateNote(task: Task, callback: successCallback)
-    fun deleteNote(task: Task, callback: successCallback)
-    fun retrieveNotes(): List<Task>
+    fun addTask(task: Task, callback: successCallback)
+    fun updateTask(task: Task, callback: successCallback)
+    fun deleteTask(task: Task, callback: successCallback)
+    fun retrieveTasks(): List<Task>
 
     fun getFakeData(): MutableList<Task>
 

@@ -1,8 +1,15 @@
 package com.beloushkin.android.learn.notes.foundations
 
+import android.text.Editable
 import android.text.TextWatcher
 
-abstract class DefaultTextWatcher : TextWatcher {
+open class StateChangeTextWatcher : TextWatcher {
+
+    var previousValue:String? = null
+
+    override fun afterTextChanged(s: Editable?) {
+        previousValue = s?.toString()
+    }
 
     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
         // no-operation

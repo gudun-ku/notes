@@ -1,5 +1,6 @@
 package com.beloushkin.android.learn.notes.tasks
 
+import android.util.Log
 import com.beloushkin.android.learn.notes.models.Task
 import com.beloushkin.android.learn.notes.models.Todo
 import javax.inject.Inject
@@ -20,19 +21,20 @@ class TaskLocalModel @Inject constructor() : ITaskModel{
         ))
     )
 
-    override fun addNote(task: Task, callback: successCallback) {
+    override fun addTask(task: Task, callback: successCallback) {
+        Log.d("Udemy Kotlin course", task.toString())
+        callback.invoke(true)
+    }
+
+    override fun updateTask(task: Task, callback: successCallback) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun updateNote(task: Task, callback: successCallback) {
+    override fun deleteTask(task: Task, callback: successCallback) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun deleteNote(task: Task, callback: successCallback) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun retrieveNotes(): List<Task> {
+    override fun retrieveTasks(): List<Task> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }
