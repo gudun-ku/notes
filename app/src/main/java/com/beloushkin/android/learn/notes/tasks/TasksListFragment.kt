@@ -47,6 +47,11 @@ class TasksListFragment : Fragment() {
         setContentView()
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.loadData()
+    }
+
     private fun setContentView() {
         contentView.initView(touchActionDelegate,viewModel)
     }

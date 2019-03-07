@@ -11,34 +11,39 @@ class TaskLocalModel @Inject constructor() : ITaskModel{
 
     private var databaseClient = RoomDatabaseClient.getInstance(NoteApplication.instance.applicationContext)
 
-    override fun getFakeData(): MutableList<Task> = mutableListOf(
-        Task("Testing one", mutableListOf(
-            Todo(description = "Todo test one", isComplete = true),
-            Todo(description = "Todo test two")
-        )),
-        Task("Testing two"),
-        Task("Testing three", mutableListOf(
-            Todo(description = "Todo test three", isComplete = true),
-            Todo(description = "Todo test four"),
-            Todo(description = "Todo test five"),
-            Todo(description = "Todo test six")
-        ))
-    )
+    override fun getFakeData(): MutableList<Task> = retrieveTasks().toMutableList()
 
     override fun addTask(task: Task, callback: successCallback) {
-        Log.d("Udemy Kotlin course", task.toString())
+        Log.d("Notes. Add", task.toString())
+        databaseClient.taskDAO().addTask(task)
+        addTodosInTask(task)
         callback.invoke(true)
     }
 
     override fun updateTask(task: Task, callback: successCallback) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        Log.d("Notes. Update", task.toString())
+        databaseClient.taskDAO().updateTask(task)
+        callback.invoke(true)
+    }
+
+    override fun updateTodo(todo: Todo, callback: successCallback) {
+        Log.d("Notes. Update", todo.toString())
+        databaseClient.taskDAO().updateTodo(todo)
+        callback.invoke(true)
     }
 
     override fun deleteTask(task: Task, callback: successCallback) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        Log.d("Notes. Delete", task.toString())
+        databaseClient.taskDAO().deleteTask(task)
+        callback.invoke(true)
     }
 
-    override fun retrieveTasks(): List<Task> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    private fun addTodosInTask(task: Task) {
+        task.todos?.forEach {todo ->
+            databaseClient.taskDAO().addTodo(todo)
+        }
     }
+
+    override fun retrieveTasks(): List<Task> = databaseClient.taskDAO().retrieveTasks()
+
 }

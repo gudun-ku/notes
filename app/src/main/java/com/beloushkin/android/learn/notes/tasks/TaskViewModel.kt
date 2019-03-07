@@ -18,12 +18,35 @@ class TaskViewModel : ViewModel(), TaskListViewContract  {
 
 
     init {
-
         Toothpick.inject(this, ApplicationScope.scope)
         _taskListLiveData.postValue(model.getFakeData())
     }
 
     override fun onTodoUpdated(taskIndex: Int, todoIndex: Int, isComplete: Boolean) {
-       _taskListLiveData.value?.get(taskIndex)?.todos?.get(todoIndex)?.isComplete = isComplete
+        _taskListLiveData.value?.let {taskList ->
+            val task = taskList[taskIndex]
+            task.todos?.let {todoList ->
+                val todo = todoList[todoIndex]
+                todo.apply {
+                    this.isComplete = isComplete
+                    this.taskId = task.uid
+                }
+                model.updateTodo(todo) {
+                    loadData()
+                }
+            }
+        }
+    }
+
+    fun loadData() {
+        _taskListLiveData.postValue(model.retrieveTasks().toMutableList())
+    }
+
+    override fun onTaskDeleted(taskIndex: Int) {
+        _taskListLiveData.value?.let {
+            model.deleteTask(it[taskIndex]) {
+                loadData()
+            }
+        }
     }
 }
