@@ -13,4 +13,5 @@
     <dimen name="text_size_small">12sp</dimen>
 
     <dimen name="elevation_default">2dp</dimen>
+    <dimen name="image_icon_default">32dp</dimen>
 </resources>

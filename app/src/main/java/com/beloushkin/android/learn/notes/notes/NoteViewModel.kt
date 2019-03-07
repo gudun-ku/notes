@@ -3,9 +3,9 @@ package com.beloushkin.android.learn.notes.notes
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.beloushkin.android.learn.notes.foundations.ApplicationScope
 import com.beloushkin.android.learn.notes.models.Note
 import toothpick.Toothpick
-import toothpick.config.Module
 import javax.inject.Inject
 
 class NoteViewModel: ViewModel(), NoteListViewContract {
@@ -17,11 +17,7 @@ class NoteViewModel: ViewModel(), NoteListViewContract {
     val noteListLiveData: LiveData<MutableList<Note>> = _noteListLiveData
 
     init {
-        val scope = Toothpick.openScope(this)
-        scope.installModules(Module().apply {
-            bind(INoteModel::class.java).toInstance(NoteLocalModel())
-        })
-        Toothpick.inject(this, scope)
+        Toothpick.inject(this, ApplicationScope.scope)
         _noteListLiveData.postValue(model.getFakeData())
     }
 }
