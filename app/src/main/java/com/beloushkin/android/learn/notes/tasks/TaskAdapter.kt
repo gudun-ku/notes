@@ -18,11 +18,9 @@ class TaskAdapter(
     val dataActionDelegate: TaskListViewContract
 ) : BaseRecyclerAdapter<Task>(taskList) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder = if (viewType == TYPE_ADD_BUTTON) {
-        AddButtonViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.view_add_button, parent, false))
-    } else {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
         TaskViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_task, parent, false))
-    }
+
 
     inner class TaskViewHolder(view: View) : BaseViewHolder<Task>(view) {
         override fun onBind(data: Task, listIndex: Int) {
@@ -34,15 +32,6 @@ class TaskAdapter(
                 deleteCallback = {
                     dataActionDelegate.onTaskDeleted(listIndex)
                 })
-        }
-    }
-
-    inner class AddButtonViewHolder(view: View ) : BaseRecyclerAdapter.AddButtonViewHolder(view) {
-        override fun onBind(data: Unit, listIndex: Int) {
-            view.buttonText.text = view.context.getString(R.string.add_button_task)
-            view.setOnClickListener {
-                touchActionDelegate.onAddButtonClicked(NavigationActivity.FRAGMENT_VALUE_TASK);
-            }
         }
     }
 }

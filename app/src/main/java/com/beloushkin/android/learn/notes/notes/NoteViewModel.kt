@@ -5,6 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.beloushkin.android.learn.notes.foundations.ApplicationScope
 import com.beloushkin.android.learn.notes.models.Note
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import toothpick.Toothpick
 import javax.inject.Inject
 
@@ -22,17 +24,21 @@ class NoteViewModel: ViewModel(), NoteListViewContract {
     }
 
     fun loadData() {
-        model.retrieveNotes {
-            it?.let {
-                _noteListLiveData.postValue(it.toMutableList())
+        GlobalScope.launch {
+            model.retrieveNotes {nullableList ->
+                nullableList?.let {
+                    _noteListLiveData.postValue(it.toMutableList())
+                }
             }
         }
     }
 
     override fun onDeleteNote(note: Note) {
-        model.deleteNote(note) {
-            if (it) {
-                loadData()
+        GlobalScope.launch {
+            model.deleteNote(note) {
+                if (it) {
+                    loadData()
+                }
             }
         }
     }

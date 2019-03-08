@@ -5,6 +5,7 @@
 
     <dimen name="simple_item_view_height">128dp</dimen>
     <dimen name="item_margin_default">16dp</dimen>
+    <dimen name="fab_margin_default">96dp</dimen>
     <dimen name="item_margin_small">8dp</dimen>
 
     <dimen name="text_size_xl_large">32sp</dimen>

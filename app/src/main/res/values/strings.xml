@@ -1,22 +1,17 @@
 <resources>
     <string name="app_name">Notes</string>
-    <string name="title_activity_navigation">NavigationActivity</string>
+    <string name="title_activity_navigation">Tasks and Notes</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_task">Tasks</string>
     <string name="title_note">Notes</string>
-
     <string name="add_button_task">Add new Task</string>
     <string name="add_button_note">Add new Note</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_save">Save</string>
-
     <string name="hint_add_task">Add new task &#8230;</string>
     <string name="hint_add_todo">Add new todo &#8230;</string>
     <string name="hint_add_note">Add new note &#8230;</string>
     <string name="toast_error_string">Error! Could not Save!</string>
-
+    <string name="title_activity_create">Create item</string>
 </resources>

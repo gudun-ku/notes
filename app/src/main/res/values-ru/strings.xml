@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Notes</string>
+    <string name="title_activity_navigation">Задачи и заметки</string>
+    <string name="title_home">Домой</string>
+    <string name="title_dashboard">Дашборд</string>
+    <string name="title_notifications">Оповещения</string>
+    <string name="title_task">Задачи</string>
+    <string name="title_note">Заметки</string>
+    <string name="add_button_task">Новая задача</string>
+    <string name="add_button_note">Новая заметка</string>
+    <string name="title_save">Сохранить</string>
+    <string name="hint_add_task">Добавить задачу &#8230;</string>
+    <string name="hint_add_todo">Добавить пункт &#8230;</string>
+    <string name="hint_add_note">Добавить заметку &#8230;</string>
+    <string name="toast_error_string">Ошибка! Не сохранено!</string>
+    <string name="title_activity_create">Создать элемент</string>
+</resources>

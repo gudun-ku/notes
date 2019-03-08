@@ -15,4 +15,15 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             android:id="@+id/recyclerView"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_plus_white"
+            android:layout_marginBottom="@dimen/fab_margin_default"
+            android:layout_marginEnd="@dimen/item_margin_default"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:backgroundTint="@color/colorPrimaryDark"/>
 </com.beloushkin.android.learn.notes.tasks.TaskListView>

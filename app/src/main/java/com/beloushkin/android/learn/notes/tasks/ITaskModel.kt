@@ -8,12 +8,10 @@ typealias successCallback = (Boolean) -> Unit
 interface ITaskModel {
 
     // CRUD OPERATIONS
-    fun addTask(task: Task, callback: successCallback)
-    fun updateTask(task: Task, callback: successCallback)
-    fun updateTodo(todo: Todo, callback: successCallback)
-    fun deleteTask(task: Task, callback: successCallback)
-    fun retrieveTasks(): List<Task>
-
-    fun getFakeData(): MutableList<Task>
+    suspend fun addTask(task: Task, callback: successCallback)
+    suspend fun updateTask(task: Task, callback: successCallback)
+    suspend fun updateTodo(todo: Todo, callback: successCallback)
+    suspend fun deleteTask(task: Task, callback: successCallback)
+    fun retrieveTasks(callback: (List<Task>?) -> Unit)
 
 }

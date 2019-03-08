@@ -7,8 +7,8 @@ typealias successCallback = (Boolean) -> Unit
 interface INoteModel {
 
     // CRUD OPERATIONS
-    fun addNote(note: Note, callback: successCallback)
-    fun updateNote(note: Note, callback: successCallback)
-    fun deleteNote(note: Note, callback: successCallback)
-    fun retrieveNotes(callback: (List<Note>?) -> Unit)
+    suspend fun addNote(note: Note, callback: successCallback)
+    suspend fun updateNote(note: Note, callback: successCallback)
+    suspend fun deleteNote(note: Note, callback: successCallback)
+    suspend fun retrieveNotes(callback: (List<Note>?) -> Unit)
 }

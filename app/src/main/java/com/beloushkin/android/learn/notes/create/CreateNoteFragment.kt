@@ -14,6 +14,8 @@ import com.beloushkin.android.learn.notes.models.Note
 import com.beloushkin.android.learn.notes.notes.INoteModel
 import com.beloushkin.android.learn.notes.notes.successCallback
 import kotlinx.android.synthetic.main.fragment_create_note.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import toothpick.Toothpick
 import javax.inject.Inject
 
@@ -38,11 +40,13 @@ class CreateNoteFragment : Fragment(), NullFieldChecker {
     }
 
     fun saveNote(callback: successCallback) {
-        createNote()?.let {
-            model.addNote(it){
-                callback.invoke(true)
-            }
-        }?:callback.invoke(false)
+        GlobalScope.launch {
+            createNote()?.let {note ->
+                model.addNote(note){success ->
+                    callback.invoke(success)
+                }
+            }?:callback.invoke(false)
+        }
     }
 
     fun createNote(): Note? = if (!hasNullField()) {

@@ -6,6 +6,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.beloushkin.android.learn.notes.models.Note
+import com.beloushkin.android.learn.notes.navigation.NavigationActivity
 import kotlinx.android.synthetic.main.fragment_tasks_list.view.*
 
 class NoteListView @JvmOverloads constructor(
@@ -39,6 +40,9 @@ class NoteListView @JvmOverloads constructor(
             dataActionDelegate = dataActionDelegate
         )
         recyclerView.adapter = adapter
+        fabAdd.setOnClickListener {
+            touchActionDelegate.onAddButtonClicked(NavigationActivity.FRAGMENT_VALUE_NOTE);
+        }
     }
 
     fun updateList(list: List<Note>) {
