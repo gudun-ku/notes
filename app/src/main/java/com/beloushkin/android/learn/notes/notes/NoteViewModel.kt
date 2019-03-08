@@ -22,7 +22,11 @@ class NoteViewModel: ViewModel(), NoteListViewContract {
     }
 
     fun loadData() {
-        _noteListLiveData.postValue(model.retrieveNotes().toMutableList())
+        model.retrieveNotes {
+            it?.let {
+                _noteListLiveData.postValue(it.toMutableList())
+            }
+        }
     }
 
     override fun onDeleteNote(note: Note) {
